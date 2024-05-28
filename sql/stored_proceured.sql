@@ -1,5 +1,5 @@
 CREATE
-OR REPLACE FUNCTION get_active_loans( _fecha DATE, _tasa_interes decimal, _dias_anio_comercial integer )
+OR REPLACE FUNCTION get_active_loans_2( _fecha character varying, _tasa_interes decimal, _dias_anio_comercial integer )
     RETURNS TABLE(
         cliente varchar,
         plazo varchar,
@@ -14,11 +14,13 @@ declare vtasa_interes DECIMAL;
 declare vdias_anio_comercial INTEGER;
 declare vcliente varchar;
 declare vamount decimal;
-declare vcurrent_client record;
 declare vfinal_amount NUMERIC;
+
+SELECT TO_DATE(_fecha,'YYYY-MM-DD') INTO vfecha;
+SELECT _dias_anio_comercial into vdias_anio_comercial;
+SELECT _tasa_interes into vtasa_interes
+
 BEGIN 
-
-
     for vcurrent_client in select client from public.accounts where status = 'Activa'
     loop 
 	    select 
