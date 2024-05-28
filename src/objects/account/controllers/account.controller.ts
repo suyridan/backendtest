@@ -1,26 +1,20 @@
 import { Request, Response } from "express"; 
-import { HttpResponse } from "../../../shared/response/http.response";
 import AppDataSource from "../../../config/data.source";
 
 export class AccountController {
-  constructor(
-    private readonly httpResponse: HttpResponse = new HttpResponse()
-  ) {}
-
-  async getResult(req: Request, res: Response) {
+  static async getResult(req: Request, res: Response) {
     try {
-      // const data = await this.auditService.getAuditoriasp(req.params.data);
 
-      // const execRepository = await AppDataSource.manager
-
-      let data = 'hola mundo';
+      let data = await AppDataSource.manager.query(`SELECT * FROM public.get_active_loans('2021-05-21',360)`);
       if (!data) {
-        return this.httpResponse.NotFound(res, "No existe dato");
+        return res
+          .status(500)
+          .json({ message: "nombre de usuario y contraseña requerido" });
       }
-      return this.httpResponse.Ok(res, data);
+      return res.status(200).json(data);
     } catch (e) {
       console.error(e);
-      return this.httpResponse.Error(res, e);
+      return res.status(500).json(e);
     }
   }
 

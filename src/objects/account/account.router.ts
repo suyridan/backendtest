@@ -1,14 +1,13 @@
-import { BaseRouter } from "../../shared/router/router";
+import * as express from "express";
+import { authentification } from "../auth/middlewares/authentification";
+import { authorization } from "../auth/middlewares/authorization";
 import { AccountController } from "./controllers/account.controller";
-import { AccountMiddleware } from "./middlewares/account.middleware";
-export class AccountRouter extends BaseRouter<AccountController, AccountMiddleware> {
-  constructor() {
-    super(AccountController, AccountMiddleware);
-  }
+const Router = express.Router();
 
-  routes(): void {
-    this.router.get("/", (req, res) =>
-      this.controller.getResult(req, res)
-    );
-  }
-}
+Router.get(
+  "/get_pagos",
+  // authentification,
+  // authorization(["admin"]),
+  AccountController.getResult
+);
+export { Router as AccountRouter };
