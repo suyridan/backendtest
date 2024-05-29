@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { encrypt } from "../../../helpers/helpers";
-import AppDataSource from "../../../config/data.source";
+import { AppDataSource } from "../../../config/AppDataSource";
 import { User } from "../entities/User.entity";
 
 export class AuthController {
@@ -12,7 +12,6 @@ export class AuthController {
           .status(500)
           .json({ message: "nombre de usuario y contraseña requerido" });
       }
-
       const userRepository = AppDataSource.getRepository(User);
       const user = await userRepository.findOne({ where: { username } });
 

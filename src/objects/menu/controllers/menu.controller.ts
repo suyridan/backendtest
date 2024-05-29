@@ -1,11 +1,11 @@
 import { Request, Response } from "express"; 
-import AppDataSource from "../../../config/data.source";
+import { AppDataSource } from "../../../config/AppDataSource";
 import { MenuItem } from "../entities/menu.entity";
 
 export class MenuController {
   static async getResult(req: Request, res: Response) {
     try {
-
+      
       const data = await AppDataSource.manager.getRepository(MenuItem).find()
 
       const newData = getChildren(data)

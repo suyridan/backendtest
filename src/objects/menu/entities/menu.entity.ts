@@ -1,9 +1,6 @@
 import { 
     Column, 
-    Entity, 
-    Tree,
-    TreeChildren,
-    TreeParent
+    Entity
   } from "typeorm";
   import { BaseEntity } from "../../../config/base.entity";
   

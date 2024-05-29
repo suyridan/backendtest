@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { encrypt } from "../../../helpers/helpers";
 import * as cache from "memory-cache";
-import AppDataSource from "../../../config/data.source";
+import { AppDataSource } from "../../../config/AppDataSource";
 import { User } from "../entities/User.entity";
 
 export class UserController {
@@ -14,12 +14,10 @@ export class UserController {
     user.email = email;
     user.password = encryptedPassword;
     user.role = role;
-
     const userRepository = AppDataSource.getRepository(User);
     await userRepository.save(user);
 
     const token = encrypt.generateToken({ id: user.id });
-
     return res
       .status(200)
       .json({ message: "Usuario creado correctamente", token, user });

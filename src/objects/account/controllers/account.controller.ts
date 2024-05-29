@@ -1,5 +1,5 @@
 import { Request, Response } from "express"; 
-import AppDataSource from "../../../config/data.source";
+import { AppDataSource } from "../../../config/AppDataSource";
 
 export class AccountController {
   static async getResult(req: Request, res: Response) {
