@@ -25,12 +25,12 @@ export class UserController {
   static async getUsers(req: Request, res: Response) {
     const data = cache.get("data");
     if (data) {
-      console.log("serving from cache");
+      console.log("from cache");
       return res.status(200).json({
         data,
       });
     } else {
-      console.log("serving from db");
+      console.log("from db");
       const userRepository = AppDataSource.getRepository(User);
       const users = await userRepository.find();
 
@@ -52,7 +52,7 @@ export class UserController {
         user.email = email;
         await userRepository.save(user);
     }
-    res.status(200).json({ message: "udpdate", user });
+    res.status(200).json({ message: "update", user });
   }
 
   static async deleteUser(req: Request, res: Response) {

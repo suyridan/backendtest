@@ -4,6 +4,9 @@ import { authorization } from "../auth/middlewares/authorization";
 import { AccountController } from "./controllers/account.controller";
 const Router = express.Router();
 
+/**
+ * Request with autorization
+ */
 Router.post(
   "/getPagos",
   authentification,

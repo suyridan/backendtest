@@ -17,7 +17,13 @@ Router.get(
   authorization(["user", "admin"]),
   AuthController.getProfile
 );
+/**
+ * Request to singnup
+ */
 Router.post("/signup", UserController.signup);
+/**
+ * Request to login
+ */
 Router.post("/login", AuthController.login);
 Router.put(
   "/update/:id",

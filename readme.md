@@ -28,5 +28,14 @@ Authorization bearer
 GET /getMenu
 
 
+Endpoint de Registro de nuevo usuario:
+POST /auth/singup
+{
+    "username": "albertohs",
+    "email": "hernandezsalberto@gmail.com",
+    "password": "123456",
+    "role": "admin"
+}
+
 Para la ejecución de pruebas:
 npm run test

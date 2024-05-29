@@ -17,6 +17,7 @@ export class AuthController {
 
       let token = ''
       if(user){
+          /**Se compara contraseña */
           const isPasswordValid = encrypt.comparepassword(user.password, password);
           if (!user || !isPasswordValid) {
             return res.status(404).json({ message: "Usuario no encontrado" });
