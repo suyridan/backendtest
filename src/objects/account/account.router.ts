@@ -4,10 +4,10 @@ import { authorization } from "../auth/middlewares/authorization";
 import { AccountController } from "./controllers/account.controller";
 const Router = express.Router();
 
-Router.get(
+Router.post(
   "/get_pagos",
-  // authentification,
-  // authorization(["admin"]),
+  authentification,
+  authorization(["admin"]),
   AccountController.getResult
 );
 export { Router as AccountRouter };

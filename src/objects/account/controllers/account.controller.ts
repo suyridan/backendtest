@@ -4,8 +4,11 @@ import AppDataSource from "../../../config/data.source";
 export class AccountController {
   static async getResult(req: Request, res: Response) {
     try {
+      const { fecha_actual, tasa_interes, dias_anio_comercial } = req.body
+      let data = await AppDataSource
+        .manager
+        .query('SELECT * FROM execute_and_get_payments( $1 , $2 , $3 )', [fecha_actual, tasa_interes, dias_anio_comercial]);
 
-      let data = await AppDataSource.manager.query(`SELECT * FROM execute_and_get_payments('2021-05-21',7.5,360)`);
       if (!data) {
         return res
           .status(500)
