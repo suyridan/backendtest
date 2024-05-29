@@ -2,6 +2,18 @@
 ## Inicialización
 La base de datos debe ser restaurada usando el archivo backendtest_v1.backup desde el repositorio o correo electrónico.
 
+Setteo de variables de entorno en .env
+
+    PORT=3001
+    ENV=develop
+    HOST="http://localhost"
+    DB_PORT=5402
+    DB_HOST=localhost
+    DB_DATABASE=backendtest
+    DB_USER=postgres
+    DB_PASSWORD=1234
+    DB_SCHEMA=public
+
 La aplicación puede ser ejecutada a partir del comando en su modo producción: 
 
     docker-compose up -d
