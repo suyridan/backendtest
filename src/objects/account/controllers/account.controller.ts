@@ -5,7 +5,7 @@ export class AccountController {
   static async getResult(req: Request, res: Response) {
     try {
 
-      let data = await AppDataSource.manager.query(`SELECT * FROM public.get_active_loans('2021-05-21',360)`);
+      let data = await AppDataSource.manager.query(`SELECT * FROM execute_and_get_payments('2021-05-21',7.5,360)`);
       if (!data) {
         return res
           .status(500)

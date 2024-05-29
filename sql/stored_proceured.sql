@@ -26,6 +26,15 @@ BEGIN
 	SELECT _dias_anio_comercial into vdias_anio_comercial;
 	SELECT _tasa_interes into vtasa_interes;
 
+	create temp TABLE payments (
+		client varchar NOT NULL,
+		plazo int4 NULL,
+		interes double precision NULL,
+		monto double precision null,
+		iva double precision null,
+		amount double precision NULL
+	) ON COMMIT DELETE ROWS;
+
     /* Se consulta clientes activos */
     for vcurrent_client in select client, amount from public.accounts where status = 'Activa'
     loop 
@@ -74,16 +83,10 @@ BEGIN
 	  	update public.accounts set amount = vcurrent_amount
 	  	where accounts.client = vcurrent_client.client;
 
-        /* se retorna tabla temporal */
-	  	return query 
-	  	select payments.client,
-        payments.plazo,
-        payments.interes,
-        payments.monto,
-        payments.iva,
-        payments.amount
-       from payments;
     end loop;
-
+   	/* se retorna tabla temporal */
+  	return query 
+  	select payments.client,payments.plazo,payments.interes,payments.monto,payments.iva,payments.amount from payments;
+	drop table payments;
     END 
     $func$;
