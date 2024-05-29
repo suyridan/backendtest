@@ -14,7 +14,6 @@ const AppDataSource = new DataSource({
     namingStrategy: new SnakeNamingStrategy(),
 })
 
-
 AppDataSource.initialize()
     .then(() => {
         console.log("Data Source has been initialized!")
