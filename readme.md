@@ -1,5 +1,13 @@
+La base de datos debe ser restaurada usando el archivo backendtest_v1.backup desde el repositorio o correo electrónico.
 
-La base de datos debe ser restaurada usando el archivo 0_database.sql
+La aplicación puede ser ejecutada a partir del comando en su modo producción:
+docker-compose up -d
+
+Para su ejecusión en ambiente de desarrollo es necesario ejecutar:
+npm install
+
+y de manera subsecuente:
+npm run dev
 
 Endpoint de autenticación siguiendo la estructura 
 POST /login
@@ -18,3 +26,7 @@ Authorization bearer
 }
 
 GET /getMenu
+
+
+Para la ejecución de pruebas:
+npm run test

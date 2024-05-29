@@ -1,17 +1,36 @@
+import AppDataSource from "../src/config/data.source";
+
 const request = require('supertest')
-jest.useFakeTimers()
 const index = require('../src/index'); // Importar clase servidor
 describe('Pagos', () => {
+
+  beforeAll(async() => {
+    AppDataSource.initialize()
+  })
+
+  afterAll(async()=> {
+    AppDataSource.destroy()
+  })
+
+
   it('Consulta los pagos', async () => {
     const res = await request(index)
-      .get('/api/get_pagos')
+      .get('/api/getPagos')
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('get')
   })
 })
 
-afterEach(() => index.close());
 describe('inicio de sesion', () => {
+
+    beforeAll(async() => {
+      AppDataSource.initialize()
+    })
+
+    afterAll(async()=> {
+      AppDataSource.destroy()
+    })
+
     it('Debe iniciar sesión', async () => {
       const res = await request(index)
         .post('/auth/login')
@@ -21,8 +40,14 @@ describe('inicio de sesion', () => {
     })
   })
 
-afterEach(() => index.close());
 describe('Get menu', () => {
+  beforeAll(async() => {
+    AppDataSource.initialize()
+  })
+
+  afterAll(async()=> {
+    AppDataSource.destroy()
+  })
     it("Creates a new user", done => {
         request(index)
           .get("/api/getMenu")
