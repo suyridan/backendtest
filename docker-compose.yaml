@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile  
+        ports:
+          - 3001:8000
+        restart: unless-stopped
+        environment:
+          ENV: production
+          PORT: 8000
+          HOST: http://localhost
+          DB_HOST: host.docker.internal
+          DB_PORT: 5402
+          DB_DATABASE: backendtest
+          DB_PASSWORD: 1234
+          DB_USER: postgres
+          DB_SCHEMA: public
+          DB_LOGS: true

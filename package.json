@@ -4,9 +4,9 @@
   "description": "audits",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --testTimeout=10000",
+    "test": "jest --detectOpenHandles --forceExit --testTimeout=10000",
     "testdos": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles --testTimeout=10000",
-    "start": "node dist/server.js",
+    "start": "node dist/src/index.js",
     "dev": "nodemon",
     "start:dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
     "start:prod": "SET NODE_ENV=production && npm start",

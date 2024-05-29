@@ -5,7 +5,7 @@ import { AccountController } from "./controllers/account.controller";
 const Router = express.Router();
 
 Router.post(
-  "/get_pagos",
+  "/getPagos",
   authentification,
   authorization(["admin"]),
   AccountController.getResult

@@ -1,15 +1,20 @@
 import app from "./app";
 import AppDataSource from "./config/data.source";
 
-// Read the port from environment variables or use a default port
+// Se setea puerto para el servidor
 const port = process.env.PORT || 3001;
-// if(process.env.NODE_ENV != 'test'){
-AppDataSource.initialize()
-// }
-// Start the server
+
+AppDataSource
+    .initialize()
+    .then(() => {
+        console.log("Se ha conectado a la DB")
+    })
+    .catch((err) => {
+        console.error("Error en conexión a la BD:", err)
+    })
 
 const server = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Servidor corriendo en el puerto: ${port}`);
 });
 
 module.exports = server;
