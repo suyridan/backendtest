@@ -1,14 +1,16 @@
 import { DataSource } from "typeorm"
 import { SnakeNamingStrategy } from "typeorm-naming-strategies"
+const dotenv = require('dotenv');
+dotenv.config({ path: '../env' });
 
 const AppDataSource = new DataSource({
     type: "postgres",
-    host: 'localhost',
-    port: Number(5402),
-    username: 'postgres',
-    password: '1234',
-    database: 'backendtest',
-    schema: 'public',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    schema: process.env.DB_SCHEMA,
     entities: [__dirname + "/../**/*.entity{.ts,.js}"],
     logging: true,
     namingStrategy: new SnakeNamingStrategy(),

@@ -4,7 +4,7 @@
   "description": "audits",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit --testTimeout=10000",
+    "test": "jest --detectOpenHandles --forceExit --testTimeout=10000 --setupFiles dotenv/config",
     "start": "node dist/src/index.js",
     "dev": "nodemon",
     "start:dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
