@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import {
   DataSource,
 } from "typeorm";
-import  AppDataSource  from "./data.source";
+import {AppDataSource}  from "./AppDataSource";
 export abstract class ConfigServer {
   constructor() {
     const nodeNameEnv = this.createPathEnv(this.nodeEnv);
